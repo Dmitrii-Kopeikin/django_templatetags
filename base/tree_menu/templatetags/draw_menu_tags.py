@@ -32,13 +32,17 @@ def _mark_active_items(menu_items: dict, context: RequestContext):
                     not active_item:
                 active_item = item
 
-        if item.parent_id is not None:
-            menu_items[item.parent_id][1].append(item_data)
-
     # Marking all parent items on higher levels of menu
     _mark_active_parents(active_item, menu_items)
 
-    return menu_items
+
+def _create_tree(menu_items: dict):
+    for item_data in menu_items.values():
+        if item_data[0].parent_id is not None:
+            menu_items[item_data[0].parent_id][1].append(item_data)
+
+    return dict(filter(lambda item: item[1][0].parent_id is None,
+                       menu_items.items()))
 
 
 @register.inclusion_tag('tree_menu/template_tags/menu.html', takes_context=True)
@@ -55,13 +59,13 @@ def draw_menu(context: RequestContext, menu_slug: str):
         # {'item_id': [item_object, children_list, is_active]
         menu_items = {item.id: [item, [], False] for item in menu_items_list}
 
-        menu_items = _mark_active_items(menu_items, context)
+        # Marking active items
+        _mark_active_items(menu_items, context)
 
-        # Deleting all non-zero level items
-        menu_items = dict(filter(lambda item: item[1][0].parent_id is None,
-                                 menu_items.items()))
+        # Creating tree
+        menu_items = _create_tree(menu_items)
     else:
-        # If there is no items, do query to get menu_title
+        # If there is no items, doing query to get menu_title
         menu_title = Menu.objects.get(slug=menu_slug).title
         menu_items = {}
 
