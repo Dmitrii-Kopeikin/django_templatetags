@@ -1,0 +1,16 @@
+{% load draw_menu_tags %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'tree_menu/styles/menu_style.css' %}">
+<script defer src="{% static 'tree_menu/js/caret_control.js' %}"></script>
+
+<div>
+    <h4>{{ menu_title }}</h4>
+    {% if menu_items.values %}
+        <ul id="myUL">
+            {% draw_items menu_items.values %}
+        </ul>
+    {% else %}
+        <span>Menu is empty!</span>
+    {% endif %}
+</div>

@@ -1,0 +1,65 @@
+.container {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.box {
+    white-space:nowrap;
+    margin: 10px;
+}
+
+.box div {
+    margin: 10px;
+}
+
+.nav {
+    width: 25%;
+    display: inline-block;
+    float: left;
+}
+
+.vl-right {
+    border-right: 1px solid black;
+}
+
+.detail {
+    height: 90%;
+    width: 70%;
+    float: left;
+    display: inline-block;
+}
+
+table {
+    width: 80%;
+    margin-left: 10px;
+}
+
+.header-right {
+    display: inline-block;
+    float: right;
+    width:25%;
+    margin: auto;
+}
+
+.header-right a {
+    display: inline-block;
+    float: right;
+    margin: 10px;
+}
+
+.header-left {
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+
+.header {
+    white-space:nowrap;
+    margin: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.content {
+    width: 100%;
+}

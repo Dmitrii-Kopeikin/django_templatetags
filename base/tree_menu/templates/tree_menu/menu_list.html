@@ -1,0 +1,27 @@
+{% extends 'tree_menu/tree_menu_base.html' %}
+{% load static %}
+
+{% block title %} | Menus |{% endblock title %}
+
+{% block header %}
+    <div>
+        <h3>Menus</h3>
+    </div>
+{% endblock header %}
+
+{% block left_bar %}
+    ------
+{% endblock left_bar %}
+{% block content %}
+    <h4>Available demo menus</h4>
+    {% if menus %}
+        {% for menu in menus %}
+            <hr>
+            <h4><a href="{% url 'tree_menu:menu' menu.id %}">{{ menu.title }}</a></h4>
+            <p>{{ menu.description }}</p>
+        {% endfor %}
+    {% else %}
+        <hr>
+        <p>There is no menu available!</p>
+    {% endif %}
+{% endblock content %}

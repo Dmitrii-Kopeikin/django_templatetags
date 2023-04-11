@@ -1,0 +1,11 @@
+{% load draw_menu_tags %}
+{% for item, subitems, is_active in items %}
+    <li>
+        <a href="{{ item.get_url }}">{{ item }}</a>
+        {% if subitems %}
+            <span class="caret{% if is_active %} caret-down{% endif %}"></span>
+            <ul class="nested{% if is_active %} active{% endif %}">
+                {% draw_items subitems %}
+            </ul>{% endif %}
+    </li>
+{% endfor %}

@@ -1,0 +1,58 @@
+{% extends 'tree_menu/menu_detail.html' %}
+
+{% block content %}
+    <h4>Title: {{ menu_item.title }}</h4>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>{{ menu_item.id }}</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>{{ menu_item.title }}</td>
+        </tr>
+        <tr>
+            <td>Menu</td>
+            <td><a href="{% url 'tree_menu:menu' menu_item.menu.id %}">{{ menu_item.menu }}</a></td>
+        </tr>
+        <tr>
+            <td>Parent item</td>
+            <td>
+                {% if menu_item.parent %}
+                    <a href="{{ menu_item.parent.get_url }}">{{ menu_item.parent }}</a>
+                {% else %}
+                    ------
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Link</td>
+            <td>
+                {% if menu_item.url %}
+                    {{ menu_item.url }}
+                {% else %}
+                    ------
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Named url</td>
+            <td>
+                {% if menu_item.named_url %}
+                    {{ menu_item.named_url }}
+                {% else %}
+                    ------
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Named url kwargs</td>
+            <td>
+                {% if menu_item.named_url_kwargs %}
+                    {{ menu_item.named_url_kwargs }}
+                {% else %}
+                    ------
+                {% endif %}</td>
+        </tr>
+    </table>
+{% endblock content %}

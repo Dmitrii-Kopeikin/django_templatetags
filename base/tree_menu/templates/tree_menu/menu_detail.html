@@ -1,0 +1,37 @@
+{% extends 'tree_menu/tree_menu_base.html' %}
+{% load draw_menu_tags %}
+{% load static %}
+
+{% block title %} | Menu | {{ menu.title }}{% endblock title %}
+
+{% block header %}
+    <div>
+        <h3>Menu | {{ menu.title }}</h3>
+    </div>
+{% endblock header %}
+
+{% block left_bar %}
+    {% draw_menu menu.slug %}
+{% endblock left_bar %}
+{% block content %}
+    <h4>Menu info</h4>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>{{ menu.id }}</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>{{ menu.title }}</td>
+        </tr>
+        <tr>
+            <td>Slug</td>
+            <td>{{ menu.slug }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ menu.description }}</td>
+        </tr>
+    </table>
+
+{% endblock content %}
